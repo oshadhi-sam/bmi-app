@@ -4,6 +4,8 @@ import com.example.bmi.model.BmiBean;
 import com.example.bmi.repository.BmiRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author Oshadhi Samarasinghe
  * @date 2023-11-03
@@ -41,5 +43,10 @@ public class BmiServiceImpl implements  BmiService{
     @Override
     public BmiBean getUser(long id) {
         return bmiRepository.findById(id).orElse(new BmiBean());
+    }
+
+    @Override
+    public List<BmiBean> getUsers() {
+        return bmiRepository.findAll();
     }
 }

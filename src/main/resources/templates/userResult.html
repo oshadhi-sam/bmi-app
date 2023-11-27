@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>BMI Value</title>
+    <title>BMI Values</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -15,26 +15,70 @@
             height: 100vh;
         }
 
-        #result {
+        #result, #results {
             text-align: center;
             background-color: #fff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            color: #333;
         }
 
         p {
-            font-weight: bold;
             margin: 8px 0;
+            color: #555;
         }
     </style>
 </head>
 <body>
 <div id="result" th:if="${user}">
+    <h1>User Information</h1>
     <p th:text="'Name: ' + ${user.name}"></p>
     <p th:text="'Height(cm): ' + ${user.height} "></p>
     <p th:text="'Weight(kg): ' + ${user.weight}"></p>
     <p th:text="'BMI: ' + ${user.bmi}"></p>
+</div>
+
+<div id="results" th:if="${users}">
+    <h1>Users</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Height (cm)</th>
+            <th>Weight (kg)</th>
+            <th>BMI</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.height}"></td>
+            <td th:text="${user.weight}"></td>
+            <td th:text="${user.bmi}"></td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 </body>
 </html>

@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller
 public class BmiController {
     BmiService bmiService;
@@ -42,6 +44,16 @@ public class BmiController {
         model.addAttribute("user", userBean);
         return "userResult";
     }
+
+    @GetMapping("/users")
+    public String getUsers( Model model) {
+
+        List<BmiBean> userBeans = bmiService.getUsers();
+        model.addAttribute("users", userBeans);
+        return "userResult";
+    }
+
+
 
 
 
